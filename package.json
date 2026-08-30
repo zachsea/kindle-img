@@ -1,0 +1,36 @@
+{
+  "name": "kindle-img",
+  "version": "1.0.0",
+  "private": true,
+  "description": "personal kindle dashboard, assumes trmnl-koreader is used as kindle FE",
+  "author": "zachsea",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zachsea/kindle-img"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env src/index.ts",
+    "build": "tsc",
+    "start": "node --env-file-if-exists=.env dist/index.js",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@t3-oss/env-core": "^0.13.11",
+    "express": "^5.2.1",
+    "satori": "^0.33.3",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.2.0",
+    "oxfmt": "^0.64.0",
+    "oxlint": "^1.79.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}
