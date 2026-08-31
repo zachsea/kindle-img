@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #fbfbf8;
+}
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 1696px;
+  height: 1272px;
+  padding: 48px;
+  box-sizing: border-box;
+}
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.reading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.value {
+  font-size: 156px;
+  font-weight: 500;
+  color: #111;
+}
+.arrow {
+  font-size: 128px;
+  color: #333;
+}
+.side {
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.delta {
+  font-size: 48px;
+  color: #666;
+}
+.timestamp {
+  font-size: 32px;
+  color: #999;
+}
+.chart {
+  flex: 1;
+}

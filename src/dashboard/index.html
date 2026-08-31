@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kindle Dashboard</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer type="module" src="./script.js"></script>
+  </head>
+  <body>
+    <div class="dashboard">
+      <div class="stats-row">
+        <div class="reading">
+          <span class="value" id="value">--</span>
+          <span class="arrow" id="arrow"></span>
+        </div>
+        <div class="side">
+          <span class="delta" id="delta"></span>
+          <span class="timestamp" id="timestamp"></span>
+        </div>
+      </div>
+      <div class="chart" id="chart"></div>
+    </div>
+  </body>
+</html>

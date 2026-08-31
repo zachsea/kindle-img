@@ -19,10 +19,10 @@
     "format:check": "oxfmt --check ."
   },
   "dependencies": {
-    "@resvg/resvg-js": "^2.6.2",
     "@t3-oss/env-core": "^0.13.11",
     "express": "^5.2.1",
-    "satori": "^0.33.3",
+    "lru-cache": "^11.5.2",
+    "playwright": "^1.62.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
