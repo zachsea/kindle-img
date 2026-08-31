@@ -1,7 +1,16 @@
-FROM mcr.microsoft.com/playwright:v1.62.0-noble
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci
+COPY . .
+# build the project (produces dist and copies static files into dist)
+RUN npm run build
+
+FROM mcr.microsoft.com/playwright:v1.62.0-noble AS runtime
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci --omit=dev
-COPY dist ./dist
-COPY src/dashboard.html ./dist/dashboard.html
+# copy built output from builder stage
+COPY --from=builder /app/dist ./dist
+
 CMD ["node", "dist/index.js"]

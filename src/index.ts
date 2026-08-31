@@ -2,6 +2,9 @@ import express from "express";
 import { env } from "./env.js";
 import { renderDashboard } from "./render.js";
 import { LRUCache } from "lru-cache/raw";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -50,9 +53,14 @@ app.get("/api/nightscout/entries", async (req, res) => {
   res.json(await nsRes.json());
 });
 
-// in dev, serve the dashboard html so we can see it in a browser
-if (app.get("env") === "development") {
-  app.use(express.static("src/dashboard"));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const distStatic = path.join(__dirname, "dashboard");
+const srcStatic = path.join(process.cwd(), "src", "dashboard");
+let staticDir: string | null = null;
+if (fs.existsSync(distStatic)) staticDir = distStatic;
+else if (fs.existsSync(srcStatic)) staticDir = srcStatic;
+if (staticDir) {
+  app.use(express.static(staticDir));
 }
 
 app.listen(env.PORT, () => console.log(`kindle-img listening on ${env.PORT}`));
