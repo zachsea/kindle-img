@@ -1,4 +1,5 @@
 import { chromium, type Browser } from "playwright";
+import sharp from "sharp";
 
 // my kindle screen, in future we could allow requests to specify a different size for multi-device support
 const WIDTH = 1696;
@@ -31,7 +32,8 @@ export async function renderDashboard(): Promise<Buffer> {
     await page.waitForFunction(() => (window as any).__RENDER_READY__, {
       timeout: 10_000,
     });
-    return await page.screenshot({ type: "png" });
+    const screenshot = await page.screenshot({ type: "png" });
+    return await sharp(screenshot).rotate(90).png().toBuffer();
   } finally {
     await context.close();
   }
