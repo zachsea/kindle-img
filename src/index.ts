@@ -20,7 +20,7 @@ app.get("/api/display", (req, res) => {
   res.json({
     image_url: `${base}/dash.png`,
     refresh_rate: env.REFRESH_RATE_SECONDS,
-    filename: "dash.png",
+    filename: `dash-${Date.now()}.png`,
   });
 });
 
@@ -48,7 +48,9 @@ app.get("/api/nightscout/entries", async (req, res) => {
   url.searchParams.set("count", "500"); // safety cap, won't be hit at normal 5-min intervals
 
   const nsRes = await fetch(url, {
-    headers: process.env.NIGHTSCOUT_API_SECRET ? { "API-SECRET": process.env.NIGHTSCOUT_API_SECRET } : {},
+    headers: process.env.NIGHTSCOUT_API_SECRET
+      ? { "API-SECRET": process.env.NIGHTSCOUT_API_SECRET }
+      : {},
   });
   res.json(await nsRes.json());
 });
