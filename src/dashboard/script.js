@@ -2,13 +2,13 @@
 import { renderChart } from "./chart.js";
 
 const TREND_ARROWS = {
-  DoubleUp: "⇈",
-  SingleUp: "↑",
-  FortyFiveUp: "↗",
-  Flat: "→",
-  FortyFiveDown: "↘",
-  SingleDown: "↓",
-  DoubleDown: "⇊",
+  DoubleUp: "double-up.svg",
+  SingleUp: "up.svg",
+  FortyFiveUp: "up-right.svg",
+  Flat: "right.svg",
+  FortyFiveDown: "down-right.svg",
+  SingleDown: "down.svg",
+  DoubleDown: "double-down.svg",
 };
 
 async function main() {
@@ -17,7 +17,13 @@ async function main() {
 
   const [latest, previous] = entries;
   document.getElementById("value").textContent = latest.sgv;
-  document.getElementById("arrow").textContent = TREND_ARROWS[latest.direction] ?? "";
+  const arrowEl = document.getElementById("arrow");
+  const icon = TREND_ARROWS[latest.direction];
+  if (icon) {
+    arrowEl.innerHTML = `<img src="./icons/${icon}" alt="${latest.direction}" />`;
+  } else {
+    arrowEl.textContent = "";
+  }
   const delta = previous ? latest.sgv - previous.sgv : 0;
   document.getElementById("delta").textContent = `${delta > 0 ? "+" : ""}${delta} mg/dL`;
   document.getElementById("timestamp").textContent = `${Math.round((Date.now() - latest.date) / 60000)} min ago`;

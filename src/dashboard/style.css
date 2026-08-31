@@ -21,7 +21,7 @@ body {
 .reading {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 24px;
 }
 .value {
   font-size: 156px;
@@ -29,8 +29,19 @@ body {
   color: #111;
 }
 .arrow {
-  font-size: 128px;
+  width: 128px;
+  height: 128px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: #333;
+}
+.arrow img {
+  width: 100%;
+  height: auto;
+  display: block;
+  color: inherit;
+  filter: none;
 }
 .side {
   padding-top: 24px;
